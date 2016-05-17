@@ -5,17 +5,17 @@ import {
 } from '../mutation-types'
 
 const state = {
-  all: []
+  all: JSON.parse(localStorage.getItem('todos')) || []
 }
 
 const mutations = {
   [ADD_TODO] (state, todo) {
     state.all.push(todo)
   },
-  [UPDATE_TODO] (state, todo) {
+  [UPDATE_TODO] (state, id) {
     state.all.find((t, i) => {
-      if (t.id === todo.id) {
-        state.all.$set(i, t)
+      if (t.id === id) {
+        state.all[i].isDone = !t.isDone
         return true
       }
 

@@ -20,8 +20,24 @@
 </style>
 
 <template>
-  <div>
-    <input type="checkbox">
-    <span>Take out the trash</span>
+  <div @click="toggleTodo">
+    <input type="checkbox" v-model="data.isDone">
+    <span>{{ data.todo }}</span>
   </div>
 </template>
+
+<script>
+  import { updateTodo } from '../../../vuex/actions'
+
+  export default {
+    methods: {
+      toggleTodo () {
+        this.updateTodo(this.data.id)
+      }
+    },
+    props: ['data'],
+    vuex: {
+      actions: { updateTodo }
+    }
+  }
+</script>

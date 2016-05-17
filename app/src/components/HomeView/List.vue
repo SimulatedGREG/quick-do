@@ -7,19 +7,18 @@
 
 <template>
   <div>
-    <item></item>
-    <item></item>
-    <item></item>
-    <item></item>
-    <item></item>
-    <item></item>
+    <item v-for="todo in todos" :data="todo"></item>
   </div>
 </template>
 
 <script>
   import Item from './List/Item'
+  import { todos } from '../../vuex/getters'
 
   export default {
-    components: { Item }
+    components: { Item },
+    vuex: {
+      getters: { todos }
+    }
   }
 </script>
