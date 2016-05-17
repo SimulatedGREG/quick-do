@@ -5,6 +5,7 @@ const path = require('path')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const ipcMain = electron.ipcMain
+const globalShortcut = electron.globalShortcut
 
 let mainWindow, quickAdderWindow, config = {}
 
@@ -64,13 +65,27 @@ function createQuickAdderWindow () {
     height: 51,
     frame: false,
     resizable: false,
+    show: false,
     width: 340
   })
 
-  quickAdderWindow.loadURL(config.quickAdderUrl)
-  if(process.env.NODE_ENV === 'development') quickAdderWindow.webContents.openDevTools()
+  quickAdderWindow.setTitle('Quick-Adder')
 
-  quickAdderWindow.on('closed', () => {
-    quickAdderWindow = null
+  quickAdderWindow.on('blur', () => {
+    quickAdderWindow.hide()
   })
+
+  quickAdderWindow.loadURL(config.quickAdderUrl)
+  if(process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools()
+
+  const cs = globalShortcut.register('Control+Space', () => {
+    quickAdderWindow.show()
+    quickAdderWindow.focus()
+  })
+
+  if (!cs) console.log('registration failed')
 }
+
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll()
+})

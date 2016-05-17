@@ -32,11 +32,12 @@
 </style>
 
 <template>
-  <input type="text" @keyup.enter="submit" v-model="todo" placeholder="new todo...">
+  <input v-el:input type="text" @keyup.enter="submit" @keyup.esc="close" v-model="todo" placeholder="new todo...">
 </template>
 
 <script>
   import { ipcRenderer } from 'electron'
+  const { BrowserWindow } = require('electron').remote
 
   export default {
     data () {
@@ -45,7 +46,17 @@
     methods: {
       submit () {
         ipcRenderer.send('new-todo', this.todo)
+        this.close()
+      },
+      close () {
+        this.todo = ''
+        BrowserWindow.getAllWindows().forEach(win => {
+          if (win.getTitle() === '') win.hide()
+        })
       }
+    },
+    ready () {
+      this.$els.input.focus()
     }
   }
 </script>

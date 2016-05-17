@@ -77,7 +77,8 @@ let config = {
     new HtmlWebpackPlugin({
       excludeChunks: ['devtools', 'build'],
       filename: 'quick-adder.html',
-      template: './app/src/QuickAdder/main.ejs'
+      template: './app/src/QuickAdder/main.ejs',
+      title: 'Quick-Adder'
     }),
     new webpack.NoErrorsPlugin()
   ],
