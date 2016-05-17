@@ -7,7 +7,7 @@
 
 <template>
   <div>
-    <item v-for="todo in todos" :data="todo"></item>
+    <item v-for="todo in todos | cats" :data="todo"></item>
   </div>
 </template>
 
@@ -17,6 +17,16 @@
 
   export default {
     components: { Item },
+    filters: {
+      cats (todos) {
+        return todos.filter(t => {
+          if (this.selected === 'WAITING') return t.isDone === false
+          else if (this.selected === 'DONE') return t.isDone === true
+          else return true
+        })
+      }
+    },
+    props: ['selected'],
     vuex: {
       getters: { todos }
     }

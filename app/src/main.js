@@ -1,3 +1,4 @@
+import './components/HomeView/assets/material-icons.css'
 import 'normalize.css'
 
 import Vue from 'vue'

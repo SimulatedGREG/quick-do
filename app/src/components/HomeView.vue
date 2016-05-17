@@ -14,8 +14,8 @@
 
 <template>
   <top></top>
-  <controls></controls>
-  <list></list>
+  <controls :selected="selected"></controls>
+  <list :selected="selected"></list>
 </template>
 
 <script>
@@ -24,6 +24,9 @@
   import Top from './HomeView/Top'
 
   export default {
+    data () {
+      return { selected: 'ALL' }
+    },
     components: {
       Controls,
       List,

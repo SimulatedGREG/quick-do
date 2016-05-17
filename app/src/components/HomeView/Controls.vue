@@ -1,7 +1,5 @@
 <style lang="scss" scoped>
-  div {
-    background-color: #1abc9c;
-  }
+  div { background-color: #1abc9c; }
 
   ul {
     align-items: flex-end;
@@ -20,7 +18,7 @@
     text-align: center;
     transition: background 150ms ease-in-out;
 
-    &:hover {
+    &:hover:not(.active) {
       background-color: rgba(#fff, .15);
       cursor: pointer;
     }
@@ -40,9 +38,29 @@
 <template>
   <div>
     <ul>
-      <li class="active">ALL</li>
-      <li>WAITING</li>
-      <li>DONE</li>
+      <li v-for="c in categories" @click="select(c)" v-bind:class="{ 'active': c === selected }">
+        {{ c }}
+      </li>
     </ul>
   </div>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        categories: [
+          'ALL',
+          'WAITING',
+          'DONE'
+        ]
+      }
+    },
+    methods: {
+      select (c) {
+        this.$parent.selected = c
+      }
+    },
+    props: ['selected']
+  }
+</script>
