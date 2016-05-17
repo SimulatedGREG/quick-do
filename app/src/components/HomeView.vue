@@ -58,7 +58,7 @@
 
   export default {
     data () {
-      return { selected: 'ALL' }
+      return { selected: 'TODO' }
     },
     components: {
       Controls,

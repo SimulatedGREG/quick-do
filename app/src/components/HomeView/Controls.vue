@@ -58,9 +58,9 @@
     data () {
       return {
         categories: [
-          'ALL',
-          'WAITING',
-          'DONE'
+          'TODO',
+          'DONE',
+          'ALL'
         ]
       }
     },

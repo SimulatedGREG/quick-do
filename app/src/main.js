@@ -24,3 +24,12 @@ router.redirect({
 })
 
 router.start(App, 'app')
+
+const { BrowserWindow } = require('electron').remote
+
+window.onbeforeunload = e => {
+  BrowserWindow.getAllWindows().forEach(win => {
+    if (win.getTitle() === 'Quick-Do') win.hide()
+  })
+  e.returnValue = false
+}

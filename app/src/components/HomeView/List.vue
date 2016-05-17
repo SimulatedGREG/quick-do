@@ -20,7 +20,7 @@
     filters: {
       cats (todos) {
         return todos.filter(t => {
-          if (this.selected === 'WAITING') return t.isDone === false
+          if (this.selected === 'TODO') return t.isDone === false
           else if (this.selected === 'DONE') return t.isDone === true
           else return true
         })

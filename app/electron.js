@@ -32,10 +32,6 @@ function createWindow () {
   mainWindow.loadURL(config.url)
   if(process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools()
 
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
-
   if(config.devtron) BrowserWindow.addDevToolsExtension(path.join(__dirname, '../node_modules/devtron'))
   else BrowserWindow.removeDevToolsExtension('devtron')
 
@@ -62,6 +58,8 @@ app.on('activate', () => {
 
 function createQuickAdderWindow () {
   quickAdderWindow = new BrowserWindow({
+    alwaysOnTop: true,
+    center: true,
     height: 51,
     frame: false,
     resizable: false,
