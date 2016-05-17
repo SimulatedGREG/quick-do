@@ -29,7 +29,7 @@ const { BrowserWindow } = require('electron').remote
 
 window.onbeforeunload = e => {
   BrowserWindow.getAllWindows().forEach(win => {
-    if (win.getTitle() === 'Quick-Do') win.hide()
+    if (win.getTitle() === 'Quick-Do') win.minimize()
   })
   e.returnValue = false
 }
