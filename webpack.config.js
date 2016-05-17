@@ -11,7 +11,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 let config = {
   devtool: '#eval-source-map',
   entry: {
-    build: [ path.join(__dirname, 'app/src/main.js') ]
+    build: [ path.join(__dirname, 'app/src/main.js') ],
+    quickAdder: [ path.join(__dirname, 'app/src/QuickAdder/main.js')]
   },
   module: {
     preLoaders: [
@@ -68,10 +69,15 @@ let config = {
   plugins: [
     new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
-      excludeChunks: ['devtools'],
+      excludeChunks: ['devtools', 'quickAdder'],
       filename: 'index.html',
       template: './app/main.ejs',
       title: pkg.name
+    }),
+    new HtmlWebpackPlugin({
+      excludeChunks: ['devtools', 'build'],
+      filename: 'quick-adder.html',
+      template: './app/src/QuickAdder/main.ejs'
     }),
     new webpack.NoErrorsPlugin()
   ],

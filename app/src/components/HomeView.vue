@@ -1,7 +1,7 @@
 <style>
   @font-face {
     font-family: 'Roboto';
-    src: url(./HomeView/assets/Roboto.ttf);
+    src: url(./HomeView/assets/roboto.ttf);
   }
 
   * { box-sizing: border-box; }

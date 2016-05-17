@@ -7,6 +7,7 @@ import Router from 'vue-router'
 
 import App from './App'
 import routes from './routes'
+import './connector'
 
 Vue.use(Resource)
 Vue.use(Router)

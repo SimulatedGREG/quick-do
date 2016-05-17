@@ -1,8 +1,10 @@
 import * as types from './mutation-types'
 
 export function addTodo ({ dispatch }, todo) {
+  console.log(todo)
   todo.id = Math.floor(Math.random() * 65535).toString(16)
-  dispatch(types.ADD_TODO, todo)
+  todo.isDone = false
+  // dispatch(types.ADD_TODO, todo)
 }
 
 export function updateTodo ({ dispatch }, id) {

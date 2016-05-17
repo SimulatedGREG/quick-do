@@ -3,6 +3,7 @@
 
   ul {
     align-items: flex-end;
+    box-shadow: 0 0 32px 0 rgba(0, 0, 0, .1);
     display: flex;
     height: 51px;
     list-style-type: none;
@@ -16,20 +17,27 @@
     padding: 16px 0;
     position: relative;
     text-align: center;
-    transition: background 150ms ease-in-out;
+    transition: background 90ms ease-in-out;
 
     &:hover:not(.active) {
       background-color: rgba(#fff, .15);
       cursor: pointer;
     }
 
-    &.active:after {
+    &:after {
       background-color: #fff;
       bottom: 0;
       content: '';
       display: block;
       height: 4px;
+      left: 50%;
       position: absolute;
+      transform: translateX(-50%);
+      transition: all 90ms ease-in-out;
+      width: 0;
+    }
+
+    &.active:after {
       width: 100%;
     }
   }

@@ -7,7 +7,7 @@
 
 <template>
   <div>
-    <item v-for="todo in todos | cats" :data="todo"></item>
+    <item v-for="todo in todos | cats" track-by="$index" :data="todo"></item>
   </div>
 </template>
 
